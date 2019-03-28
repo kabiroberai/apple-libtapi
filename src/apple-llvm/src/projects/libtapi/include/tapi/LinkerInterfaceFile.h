@@ -103,6 +103,10 @@ enum class FileType : unsigned {
   /// \brief Text-based stub file (.tbd) version 2.0
   /// \since 1.0
   TBD_V2 = 2,
+
+  /// \brief Text-based stub file (.tbd) version 3.0
+  /// \since 1.0
+  TBD_V3 = 3,
 };
 
 ///

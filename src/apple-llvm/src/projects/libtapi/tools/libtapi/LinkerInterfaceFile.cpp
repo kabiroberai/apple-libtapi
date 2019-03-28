@@ -299,6 +299,8 @@ LinkerInterfaceFile *LinkerInterfaceFile::create(
     file->_pImpl->_fileType = FileType::TBD_V1;
   else if (interface->getFileType() == TAPI_INTERNAL::FileType::TBD_V2)
     file->_pImpl->_fileType = FileType::TBD_V2;
+  else if (interface->getFileType() == TAPI_INTERNAL::FileType::TBD_V3)
+    file->_pImpl->_fileType = FileType::TBD_V3;
   else
     file->_pImpl->_fileType = FileType::Unsupported;
 

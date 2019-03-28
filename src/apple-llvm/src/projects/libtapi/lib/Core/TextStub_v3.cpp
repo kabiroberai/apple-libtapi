@@ -216,6 +216,7 @@ template <> struct MappingTraits<const InterfaceFile *> {
             break;
           case SymbolType::ObjCClassEHType:
             section.classEHs.emplace_back(symbol->getName());
+            break;
           case SymbolType::ObjCInstanceVariable:
             section.ivars.emplace_back(symbol->getName());
             break;
