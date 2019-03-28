@@ -96,7 +96,7 @@ static std::tuple<StringRef, SymbolType> parseSymbol(StringRef symbolName) {
     type = SymbolType::ObjCClass;
   } else if (symbolName.startswith("_OBJC_EHTYPE_$")) {
     name = symbolName.drop_front(14);
-    kind = SymbolType::ObjCClassEHType;
+    type = SymbolType::ObjCClassEHType;
   } else if (symbolName.startswith("_OBJC_IVAR_$")) {
     name = symbolName.drop_front(12);
     type = SymbolType::ObjCInstanceVariable;
