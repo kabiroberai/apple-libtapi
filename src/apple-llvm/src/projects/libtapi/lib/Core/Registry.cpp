@@ -16,6 +16,7 @@
 #include "tapi/Core/MachODylibReader.h"
 #include "tapi/Core/TextStub_v1.h"
 #include "tapi/Core/TextStub_v2.h"
+#include "tapi/Core/TextStub_v3.h"
 #include "tapi/Core/YAMLReaderWriter.h"
 
 using namespace llvm;
@@ -89,6 +90,8 @@ void Registry::addYAMLReaders() {
       new stub::v1::TextBasedStubDocumentHandler));
   reader->add(std::unique_ptr<DocumentHandler>(
       new stub::v2::TextBasedStubDocumentHandler));
+  reader->add(std::unique_ptr<DocumentHandler>(
+      new stub::v3::TextBasedStubDocumentHandler));
   add(std::unique_ptr<Reader>(std::move(reader)));
 }
 
@@ -98,6 +101,8 @@ void Registry::addYAMLWriters() {
       new stub::v1::TextBasedStubDocumentHandler));
   writer->add(std::unique_ptr<DocumentHandler>(
       new stub::v2::TextBasedStubDocumentHandler));
+  writer->add(std::unique_ptr<DocumentHandler>(
+      new stub::v3::TextBasedStubDocumentHandler));
   add(std::unique_ptr<Writer>(std::move(writer)));
 }
 

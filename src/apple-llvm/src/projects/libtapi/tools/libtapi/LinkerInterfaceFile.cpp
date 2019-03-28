@@ -314,16 +314,16 @@ LinkerInterfaceFile *LinkerInterfaceFile::create(
       exports.emplace_back(symbol.getName(), symbol.getFlags());
     } else if (symbol.isObjCClass()) {
       if (platform == Platform::OSX && arch == Arch::i386) {
-        exports.emplace_back(".objc_class_name" + symbol.getName(),
+        exports.emplace_back(".objc_class_name_" + symbol.getName(),
                              symbol.getFlags());
       } else {
-        exports.emplace_back("_OBJC_CLASS_$" + symbol.getName(),
+        exports.emplace_back("_OBJC_CLASS_$_" + symbol.getName(),
                              symbol.getFlags());
-        exports.emplace_back("_OBJC_METACLASS_$" + symbol.getName(),
+        exports.emplace_back("_OBJC_METACLASS_$_" + symbol.getName(),
                              symbol.getFlags());
       }
     } else if (symbol.isObjCInstanceVariable()) {
-      exports.emplace_back("_OBJC_IVAR_$" + symbol.getName(),
+      exports.emplace_back("_OBJC_IVAR_$_" + symbol.getName(),
                            symbol.getFlags());
     }
 
@@ -343,15 +343,15 @@ LinkerInterfaceFile *LinkerInterfaceFile::create(
     } else if (symbol.isObjCClass()) {
       if (platform == Platform::OSX && arch == Arch::i386) {
         file->_pImpl->_undefineds.emplace_back(
-            ".objc_class_name" + symbol.getName(), symbol.getFlags());
+            ".objc_class_name_" + symbol.getName(), symbol.getFlags());
       } else {
         file->_pImpl->_undefineds.emplace_back(
-            "_OBJC_CLASS_$" + symbol.getName(), symbol.getFlags());
+            "_OBJC_CLASS_$_" + symbol.getName(), symbol.getFlags());
         file->_pImpl->_undefineds.emplace_back(
-            "_OBJC_METACLASS_$" + symbol.getName(), symbol.getFlags());
+            "_OBJC_METACLASS_$_" + symbol.getName(), symbol.getFlags());
       }
     } else if (symbol.isObjCInstanceVariable()) {
-      file->_pImpl->_undefineds.emplace_back("_OBJC_IVAR_$" + symbol.getName(),
+      file->_pImpl->_undefineds.emplace_back("_OBJC_IVAR_$_" + symbol.getName(),
                                              symbol.getFlags());
     }
   }

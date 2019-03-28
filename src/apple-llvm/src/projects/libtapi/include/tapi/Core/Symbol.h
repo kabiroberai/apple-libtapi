@@ -69,6 +69,7 @@ inline raw_ostream &operator<<(raw_ostream &os, const AvailabilityInfo &avail) {
 enum class SymbolType {
   Symbol,
   ObjCClass,
+  ObjCClassEHType,
   ObjCInstanceVariable,
 };
 static const unsigned numSymbolTypeBits = 2;
@@ -123,6 +124,7 @@ struct Symbol {
   SymbolType getType() const { return (SymbolType)_type; }
   bool isSymbol() const { return getType() == SymbolType::Symbol; }
   bool isObjCClass() const { return getType() == SymbolType::ObjCClass; }
+  bool isObjCClassEHType() const { return getType() == SymbolType::ObjCClassEHType; }
   bool isObjCInstanceVariable() const {
     return getType() == SymbolType::ObjCInstanceVariable;
   }

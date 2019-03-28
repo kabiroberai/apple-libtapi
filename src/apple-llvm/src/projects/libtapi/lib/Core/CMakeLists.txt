@@ -6,6 +6,7 @@ add_tapi_library(tapiCore
   Symbol.cpp
   TextStub_v1.cpp
   TextStub_v2.cpp
+  TextStub_v3.cpp
   YAMLReaderWriter.cpp
   )
 

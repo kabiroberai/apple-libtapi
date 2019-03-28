@@ -60,6 +60,8 @@ std::string Symbol::getAnnotatedName(bool demangle) const {
     name += "(tlv) ";
   if (isObjCClass())
     name += "(ObjC Class) ";
+  else if (isObjCClassEHType())
+    name += "(ObjC Class EH) ";
   else if (isObjCInstanceVariable())
     name += "(ObjC IVar) ";
   return name + getPrettyName(demangle);

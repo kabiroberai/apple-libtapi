@@ -85,17 +85,20 @@ bool MachODylibReader::canRead(file_magic magic, MemoryBufferRef bufferRef,
 static std::tuple<StringRef, SymbolType> parseSymbol(StringRef symbolName) {
   StringRef name;
   SymbolType type;
-  if (symbolName.startswith(".objc_class_name")) {
-    name = symbolName.drop_front(16);
-    type = SymbolType::ObjCClass;
-  } else if (symbolName.startswith("_OBJC_CLASS_$")) {
-    name = symbolName.drop_front(13);
-    type = SymbolType::ObjCClass;
-  } else if (symbolName.startswith("_OBJC_METACLASS_$")) {
+  if (symbolName.startswith(".objc_class_name_")) {
     name = symbolName.drop_front(17);
     type = SymbolType::ObjCClass;
-  } else if (symbolName.startswith("_OBJC_IVAR_$")) {
-    name = symbolName.drop_front(12);
+  } else if (symbolName.startswith("_OBJC_CLASS_$_")) {
+    name = symbolName.drop_front(14);
+    type = SymbolType::ObjCClass;
+  } else if (symbolName.startswith("_OBJC_METACLASS_$_")) {
+    name = symbolName.drop_front(18);
+    type = SymbolType::ObjCClass;
+  } else if (symbolName.startswith("_OBJC_EHTYPE_$_")) {
+    name = symbolName.drop_front(15);
+    type = SymbolType::ObjCClassEHType;
+  } else if (symbolName.startswith("_OBJC_IVAR_$_")) {
+    name = symbolName.drop_front(13);
     type = SymbolType::ObjCInstanceVariable;
   } else {
     name = symbolName;

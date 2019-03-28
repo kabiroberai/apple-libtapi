@@ -24,21 +24,24 @@ TAPI_NAMESPACE_INTERNAL_BEGIN
 
 enum FileType : unsigned {
   /// \brief Invalid file type.
-  Invalid                   = 0U,
+  Invalid = 0U,
 
   /// \brief MachO Dynamic Library file.
-  MachO_DynamicLibrary      = 1U << 0,
+  MachO_DynamicLibrary = 1U << 0,
 
   /// \brief MachO Dynamic Library Stub file.
   MachO_DynamicLibrary_Stub = 1U << 1,
 
   /// \brief Text-based stub file (.tbd) version 1.0
-  TBD_V1                    = 1U << 2,
+  TBD_V1 = 1U << 2,
 
   /// \brief Text-based stub file (.tbd) version 2.0
-  TBD_V2                    = 1U << 3,
+  TBD_V2 = 1U << 3,
 
-  All                       = ~0U,
+  /// \brief Text-based stub file (.tbd) version 3.0
+  TBD_V3 = 1U << 4,
+
+  All = ~0U,
 };
 
 inline FileType operator&(const FileType lhs, const FileType rhs) {
