@@ -97,6 +97,7 @@ template <> struct MappingTraits<const InterfaceFile *> {
 
           const auto *symbol = symArch.first;
           switch (symbol->getType()) {
+          case SymbolType::ObjCClassEHType:
           case SymbolType::Symbol:
             if (symbol->isWeakDefined())
               section.weakDefSymbols.emplace_back(symbol->getName());

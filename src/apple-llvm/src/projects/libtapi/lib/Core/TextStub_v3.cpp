@@ -160,13 +160,13 @@ template <> struct MappingTraits<const InterfaceFile *> {
               section.symbols.emplace_back(symbol->getName());
             break;
           case SymbolType::ObjCClass:
-            section.classes.emplace_back(symbol->getName());
+            section.classes.emplace_back(symbol->getName().substr(1));
             break;
           case SymbolType::ObjCClassEHType:
-            section.classEHs.emplace_back(symbol->getName());
+            section.classEHs.emplace_back(symbol->getName().substr(1));
             break;
           case SymbolType::ObjCInstanceVariable:
-            section.ivars.emplace_back(symbol->getName());
+            section.ivars.emplace_back(symbol->getName().substr(1));
             break;
           }
         }
@@ -261,13 +261,13 @@ template <> struct MappingTraits<const InterfaceFile *> {
           file->addExportedSymbol(sym.str(), SymbolType::Symbol,
                                   SymbolFlags::None, section.archs);
         for (auto &sym : section.classes)
-          file->addExportedSymbol(sym.str(), SymbolType::ObjCClass,
+          file->addExportedSymbol("_" + sym.str(), SymbolType::ObjCClass,
                                   SymbolFlags::None, section.archs);
         for (auto &sym : section.classEHs)
-          file->addExportedSymbol(sym.str(), SymbolType::ObjCClassEHType,
+          file->addExportedSymbol("_" + sym.str(), SymbolType::ObjCClassEHType,
                                   SymbolFlags::None, section.archs);
         for (auto &sym : section.ivars)
-          file->addExportedSymbol(sym.str(), SymbolType::ObjCInstanceVariable,
+          file->addExportedSymbol("_" + sym.str(), SymbolType::ObjCInstanceVariable,
                                   SymbolFlags::None, section.archs);
         for (auto &sym : section.weakDefSymbols)
           file->addExportedSymbol(sym.str(), SymbolType::Symbol,
